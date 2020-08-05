@@ -28,12 +28,13 @@ public class Teller {
         return user;
     }
 
-    public Teller(int id, int tellernumber, String tellerdescription, String branch, String service) {
+    public Teller(int id, int tellernumber, String tellerdescription, String branch, String service,User user) {
         this.id = id;
         this.tellernumber = tellernumber;
         this.tellerdescription = tellerdescription;
         this.branch = branch;
         this.service = service;
+        this.user = user;
     }
 
     public int getId() {
