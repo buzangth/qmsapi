@@ -1,6 +1,7 @@
 package com.genetics.qmslogApi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="users")
@@ -10,12 +11,16 @@ public class User {
     private int id;
 
     @Column(name =("first_name"))
+    @NotBlank(message = "first name is required")
     private String firstname;
 
     @Column(name = "surname")
+    @NotBlank(message = "surname is required")
     private String surname;
 
-    @Column(name = "user_name")
+
+    @NotBlank(message = "username is required")
+    @Column(unique = true,name = "user_name")
     private String username;
     @Column(name = "password")
     private String password;
@@ -23,6 +28,9 @@ public class User {
     private String role;
     @Column(name="branch")
     private String branch;
+
+    public User() {
+    }
 
     public User(int id, String firstname, String surname, String username, String password, String role, String branch) {
         this.id = id;

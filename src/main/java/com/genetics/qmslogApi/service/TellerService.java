@@ -11,11 +11,7 @@ public class TellerService {
     TellerRepository tellerRepository;
 
     public Teller createTeller(Teller teller) {
-//        user.setFirstname(user.getFirstname());
-//        user.setSurname(user.getSurname());
-//        user.setPassword(user.getPassword());
-//        user.setRole(user.getRole());
-//        user.setBranch(user.getBranch());
+
         System.out.println(teller);
         return tellerRepository.save(teller);
 

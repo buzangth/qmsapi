@@ -3,6 +3,7 @@ package com.genetics.qmslogApi.model;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name ="teller")
@@ -18,14 +19,17 @@ public class Teller {
 
     @Column(name = "branch")
     private String branch;
+
     @Column(name ="service")
     private String service;
 
     @OneToOne
     private User user;
 
-    public User getUser() {
-        return user;
+
+
+
+    public Teller() {
     }
 
     public Teller(int id, int tellernumber, String tellerdescription, String branch, String service,User user) {
@@ -44,7 +48,9 @@ public class Teller {
     public void setId(int id) {
         this.id = id;
     }
-
+    public User getUser() {
+        return user;
+    }
     public int getTellernumber() {
         return tellernumber;
     }

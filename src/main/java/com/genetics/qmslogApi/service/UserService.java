@@ -1,5 +1,6 @@
 package com.genetics.qmslogApi.service;
 
+import com.genetics.qmslogApi.exception.UserIdException;
 import com.genetics.qmslogApi.model.User;
 import com.genetics.qmslogApi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,15 @@ public class UserService {
 
 
     public User createUser(User user){
-//        user.setFirstname(user.getFirstname());
-//        user.setSurname(user.getSurname());
-//        user.setPassword(user.getPassword());
-//        user.setRole(user.getRole());
-//        user.setBranch(user.getBranch());
-        System.out.println(user);
-        return userRepository.save(user);
+
+        try{
+            System.out.println(user);
+            user.setUsername(user.getUsername());
+            return userRepository.save(user);
+        }catch (Exception ex){
+            throw  new UserIdException("User ID'" + user.getUsername() + "'username already exist");
+        }
+
     }
 
 
