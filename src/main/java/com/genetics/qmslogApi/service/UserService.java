@@ -18,8 +18,9 @@ public class UserService {
             System.out.println(user);
             user.setUsername(user.getUsername());
             return userRepository.save(user);
+
         }catch (Exception ex){
-            throw  new UserIdException("User ID'" + user.getUsername() + "'username already exist");
+            throw  new UserIdException("User Id'" + user.getUsername() + "'username already exist");
         }
 
     }

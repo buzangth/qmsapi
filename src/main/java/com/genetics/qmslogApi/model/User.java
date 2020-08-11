@@ -1,11 +1,13 @@
 package com.genetics.qmslogApi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,14 +20,17 @@ public class User {
     @NotBlank(message = "surname is required")
     private String surname;
 
-
+    @Email
     @NotBlank(message = "username is required")
     @Column(unique = true,name = "user_name")
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name="role")
     private String role;
+
     @Column(name="branch")
     private String branch;
 

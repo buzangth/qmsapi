@@ -33,7 +33,7 @@ public class TellerController {
         ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
         if(errorMap!= null) return errorMap;
             Teller teller1 = tellerService.createTeller(teller);
-         return new ResponseEntity<Teller>(teller, HttpStatus.CREATED);
+         return new ResponseEntity<Teller>(teller1, HttpStatus.CREATED);
     }
 
 }
