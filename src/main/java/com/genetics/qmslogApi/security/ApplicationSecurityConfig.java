@@ -41,6 +41,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .password(passwordEncoder.encode("1234"))
                 .roles("ADMIN")
                 .build();
+        
       return new InMemoryUserDetailsManager(thabo);
     }
 }

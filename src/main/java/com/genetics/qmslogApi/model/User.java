@@ -1,12 +1,17 @@
 package com.genetics.qmslogApi.model;
 
+import com.genetics.qmslogApi.security.ApplicationUserRole;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name="users")
 public class User {
+
+    //public enum Role{TELLER(),ADMIN(),BRANCH_MANAGER()}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +34,7 @@ public class User {
     private String password;
 
     @Column(name="role")
-    private String role;
+    private List<ApplicationUserRole> role;
 
     @Column(name="branch")
     private String branch;
@@ -37,7 +42,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstname, String surname, String username, String password, String role, String branch) {
+    public User(int id, @NotBlank(message = "first name is required") String firstname, @NotBlank(message = "surname is required") String surname, @Email @NotBlank(message = "username is required") String username, String password, List<ApplicationUserRole> role, String branch) {
         this.id = id;
         this.firstname = firstname;
         this.surname = surname;
@@ -52,7 +57,7 @@ public class User {
     }
 
     public void setId(int id) {
-        id = id;
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -87,11 +92,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public List<ApplicationUserRole> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<ApplicationUserRole> role) {
         this.role = role;
     }
 
