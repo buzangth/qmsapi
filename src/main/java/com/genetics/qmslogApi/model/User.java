@@ -42,7 +42,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, @NotBlank(message = "first name is required") String firstname, @NotBlank(message = "surname is required") String surname, @Email @NotBlank(message = "username is required") String username, String password, List<ApplicationUserRole> role, String branch) {
+    public User(int id, String firstname,String surname, String username, String password, List<ApplicationUserRole> role, String branch) {
         this.id = id;
         this.firstname = firstname;
         this.surname = surname;
