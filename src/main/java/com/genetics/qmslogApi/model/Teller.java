@@ -26,9 +26,6 @@ public class Teller {
     @OneToOne
     private User user;
 
-
-
-
     public Teller() {
     }
 

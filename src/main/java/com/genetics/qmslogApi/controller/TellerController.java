@@ -21,6 +21,8 @@ public class TellerController {
     TellerService tellerService;
 
     @Autowired
+    TellerController tellerController;
+    @Autowired
     MapValidationServiceError mapValidationServiceError;
 
 //    @GetMapping

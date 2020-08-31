@@ -1,11 +1,13 @@
 package com.genetics.qmslogApi.model;
 
 import com.genetics.qmslogApi.security.ApplicationUserRole;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -34,7 +36,8 @@ public class User {
     private String password;
 
     @Column(name="role")
-    private List<ApplicationUserRole> role;
+    @ElementCollection(targetClass=String.class)
+    private Set<ApplicationUserRole> role;
 
     @Column(name="branch")
     private String branch;
@@ -42,7 +45,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstname,String surname, String username, String password, List<ApplicationUserRole> role, String branch) {
+    public User(int id, String firstname,String surname, String username, String password, Set<ApplicationUserRole> role, String branch) {
         this.id = id;
         this.firstname = firstname;
         this.surname = surname;
@@ -92,11 +95,11 @@ public class User {
         this.password = password;
     }
 
-    public List<ApplicationUserRole> getRole() {
+    public Set<ApplicationUserRole> getRole() {
         return role;
     }
 
-    public void setRole(List<ApplicationUserRole> role) {
+    public void setRole(Set<ApplicationUserRole> role) {
         this.role = role;
     }
 
