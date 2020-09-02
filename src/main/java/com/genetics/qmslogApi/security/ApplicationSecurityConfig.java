@@ -46,15 +46,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-    @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-      UserDetails thabo = User.builder()
-                .username("thabo@gmail.com")
-                .password(passwordEncoder.encode("1234"))
-                .roles("ADMIN")
-                .build();
-        
-      return new InMemoryUserDetailsManager(thabo);
-    }
+//    @Override
+//    @Bean
+//    protected UserDetailsService userDetailsService() {
+//      UserDetails thabo = User.builder()
+//                .username("thabo@gmail.com")
+//                .password(passwordEncoder.encode("1234"))
+//                .roles("ADMIN")
+//                .build();
+//
+//      return new InMemoryUserDetailsManager(thabo);
+//    }
 }
