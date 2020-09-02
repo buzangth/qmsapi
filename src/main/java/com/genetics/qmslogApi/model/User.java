@@ -42,6 +42,14 @@ public class User {
     public User() {
     }
 
+    public User(int id, String firstname, String surname, String username, String password, String branch) {
+        this.id = id;
+        this.firstname = firstname;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.branch = branch;
+    }
 
     public int getId() {
         return id;

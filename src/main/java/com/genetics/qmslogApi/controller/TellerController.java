@@ -2,6 +2,7 @@ package com.genetics.qmslogApi.controller;
 
 
 import com.genetics.qmslogApi.model.Teller;
+import com.genetics.qmslogApi.repository.TellerRepository;
 import com.genetics.qmslogApi.service.MapValidationServiceError;
 import com.genetics.qmslogApi.service.TellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class TellerController {
     TellerService tellerService;
 
     @Autowired
-    TellerController tellerController;
+    TellerRepository tellerRepository;
     @Autowired
     MapValidationServiceError mapValidationServiceError;
 
 //    @GetMapping
-//    public List<Teller> getAllTellers(){
+//    public List<Teller> tellerRepository getAllTellers(){
 //
 //    }
 

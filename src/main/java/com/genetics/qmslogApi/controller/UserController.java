@@ -39,7 +39,7 @@ public class UserController {
         ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
         if(errorMap!= null) return errorMap;
         User user1 = userService.createUser(user);
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return new ResponseEntity<User>(user1, HttpStatus.CREATED);
     }
 
 }
