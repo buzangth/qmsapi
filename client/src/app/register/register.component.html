@@ -1,0 +1,37 @@
+<div class="background-wrap">
+    <div class="background"></div>
+
+
+
+<form id="accesspanel" action="register" method="post">
+    <h1 id="litheader">Register Form</h1>
+    <div class="inset">
+
+        <p>
+            <input type="text" name="firstname" [(ngModel)]="firstname" id="firstname" placeholder="enter your firstname"/>
+        </p>
+
+        <p>
+            <input type="text" name="surname" [(ngModel)]="surname" id="surname" placeholder="enter your surname"/>
+        </p>
+
+        <p>
+            <input type="email" name="username" [(ngModel)]="username" id="username" placeholder="enter your username"/>
+        </p>
+
+        <p>
+            <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="enter your password"/>
+        </p>
+
+        <p>
+            <input type="text" name="branch" [(ngModel)]="branch" id="branch" placeholder="enter your branch"/>
+        </p>
+
+        <p class="p-container">
+            <input type="submit" name="register" id="go" value="Register" (click)="doCreateNewUser()"/>
+
+        </p>
+    
+    </div>
+</form>
+</div>

@@ -28,6 +28,13 @@ public class UserController {
     @Autowired
     MapValidationServiceError mapValidationServiceError;
 
+
+    @GetMapping
+    public String logIn(){
+        return "success";
+    }
+
+
     @GetMapping
     public List<User> getAllUsers(){
         return userRepository.findAll();

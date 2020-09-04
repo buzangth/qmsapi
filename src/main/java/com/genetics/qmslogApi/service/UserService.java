@@ -28,8 +28,5 @@ public class UserService {
         }catch (Exception ex){
             throw  new UserIdException("User Id'" + user.getUsername() + "'username already exist");
         }
-
     }
-
-
 }
