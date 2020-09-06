@@ -1,5 +1,6 @@
 package com.genetics.qmslogApi.model;
 
+import com.genetics.qmslogApi.security.ApplicationUserRole;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -8,9 +9,11 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User{
 
     //public enum Role{TELLER(),ADMIN(),BRANCH_MANAGER()}
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,23 +35,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-//    @Column(name="role")
-//    //@ElementCollection(targetClass=String.class)
-//    private Set<ApplicationUserRole> role;
+    @Column(name="role")
+    private ApplicationUserRole role;
 
     @Column(name="branch")
     private String branch;
 
     public User() {
-    }
-
-    public User(int id, String firstname, String surname, String username, String password, String branch) {
-        this.id = id;
-        this.firstname = firstname;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.branch = branch;
     }
 
     public int getId() {
@@ -91,13 +84,13 @@ public class User {
         this.password = password;
     }
 
-//    public Set<ApplicationUserRole> getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Set<ApplicationUserRole> role) {
-//        this.role = role;
-//    }
+    public ApplicationUserRole getRole() {
+        return role;
+    }
+
+    public void setRole(ApplicationUserRole role) {
+        this.role = role;
+    }
 
     public String getBranch() {
         return branch;

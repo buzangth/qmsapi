@@ -17,6 +17,9 @@ import java.util.List;
 
 @RequestMapping("api/v1/users")
 @RestController
+@CrossOrigin(
+        origins = "*"
+)
 public class UserController {
 
     @Autowired
@@ -30,14 +33,12 @@ public class UserController {
 
 
     @GetMapping
-    public String logIn(){
-        return "success";
-    }
-
-
-    @GetMapping
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+    @GetMapping("/")
+    public String logIn(){
+        return "log";
     }
 
     @PostMapping
