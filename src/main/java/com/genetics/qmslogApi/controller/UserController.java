@@ -17,9 +17,7 @@ import java.util.List;
 
 @RequestMapping("api/v1/users")
 @RestController
-@CrossOrigin(
-        origins = "*"
-)
+@CrossOrigin(origins = "http://localhost:4200/",maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -32,7 +30,7 @@ public class UserController {
     MapValidationServiceError mapValidationServiceError;
 
 
-    @GetMapping
+    @GetMapping(path = "/getUsers")
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
@@ -41,7 +39,7 @@ public class UserController {
         return "log";
     }
 
-    @PostMapping
+    @PostMapping(path = "/createUser")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result){
 
         ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
