@@ -23,6 +23,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsServiceImpl;
 
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 //        @Autowired
 //    JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -38,13 +40,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf().disable()
-                //.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                 //.and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                //.headers().frameOptions().sameOrigin()
-                //.and()
+                .headers().frameOptions().sameOrigin()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/","index","/css/*","/js/*","/html/*").permitAll()
                 .anyRequest()
@@ -58,15 +60,4 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
     }
 
-//    @Override
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//      UserDetails thabo = User.builder()
-//                .username("thbusang@gmail.com")
-//                .password(passwordEncoder.encode("12345"))
-//                .roles("ADMIN")
-//                .build();
-//
-//      return new InMemoryUserDetailsManager(thabo);
-//    }
 }
