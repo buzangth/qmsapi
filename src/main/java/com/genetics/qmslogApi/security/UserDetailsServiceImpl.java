@@ -22,7 +22,7 @@ import static com.genetics.qmslogApi.security.ApplicationUserRole.*;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;

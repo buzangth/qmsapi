@@ -11,7 +11,7 @@ export class RestapiService {
   public createNewUser(firstname:string,surname:string,username:string,password:string,branch:string){
 
     const headers = new HttpHeaders({Authorization: 'Basic' + btoa(firstname+":"+surname+":"+username+":"+password+":"+branch)})
-    return this.http.post("http://localhost:5000/api/v1/users",{headers,responseType:'text' as 'json'});
+    return this.http.post("http://localhost:5000/api/v1/users/createUser",{headers,responseType:'text' as 'json'});
   }
 
   public logIn(username:string,password:string){
