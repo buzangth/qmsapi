@@ -1,14 +1,15 @@
-package com.genetics.qmslogApi.exception;
+package com.genetics.qmslogApi.payload;
 
-public class InvalidLoginResponse {
+import javax.validation.constraints.NotBlank;
 
+public class LoginRequest {
+
+    @NotBlank(message = "Username cannot be black")
     private String username;
+
+    @NotBlank(message = "Password cannot be black")
     private String password;
 
-    public InvalidLoginResponse() {
-        this.username = "invalid username";
-        this.password = "invalid password";
-    }
 
     public String getUsername() {
         return username;

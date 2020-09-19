@@ -3,6 +3,7 @@ package com.genetics.qmslogApi.security;
 import com.genetics.qmslogApi.model.User;
 import com.genetics.qmslogApi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.data.annotation.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +18,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.genetics.qmslogApi.security.ApplicationUserRole.*;
+
 @Service
-@CrossOrigin
+
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
 
@@ -41,6 +43,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), passwordEncoder.encode(user.getPassword()),
                 grantedAuthorities);
+
+    }
+    @Transactional
+    public User loadById(Integer id){
+        User user = userRepository.getById(id);
+        if(user == null) new UsernameNotFoundException("user not found ");
+
+        return user;
 
     }
 }
