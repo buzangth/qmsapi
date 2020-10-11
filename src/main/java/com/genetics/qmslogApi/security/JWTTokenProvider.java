@@ -1,5 +1,6 @@
 package com.genetics.qmslogApi.security;
 
+
 import com.genetics.qmslogApi.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,25 +18,25 @@ import static com.genetics.qmslogApi.security.SecurityConstant.SECRET;
 public class JWTTokenProvider {
 
     public String generateToken(Authentication authentication){
-
-        User user = (User)authentication.getPrincipal();
+        User user = (User )authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
 
-        Date expireDate = new Date(now.getTime() + EXPIRATION_TIME);
+        Date expiryDate = new Date(now.getTime()+EXPIRATION_TIME);
 
         String userId = Integer.toString(user.getId());
 
-        Map<String,Object> clams = new HashMap<>();
-        clams.put("id", (Integer.toString(user.getId())));
-        clams.put("username",user.getUsername());
-        clams.put("role",user.getRole());
-
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("id", (Integer.toString(user.getId())));
+        claims.put("username", user.getUsername());
+        claims.put("surname", user.getSurname());
+        claims.put("role", user.getRole());
 
         return Jwts.builder()
                 .setSubject(userId)
-                .setClaims(clams)
+                .setClaims(claims)
                 .setIssuedAt(now)
-                .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512,SECRET).compact();
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .compact();
     }
 }

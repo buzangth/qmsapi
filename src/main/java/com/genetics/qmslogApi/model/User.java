@@ -11,10 +11,6 @@ import javax.validation.constraints.NotBlank;
 @Table(name="users")
 public class User{
 
-    //public enum Role{TELLER(),ADMIN(),BRANCH_MANAGER()}
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

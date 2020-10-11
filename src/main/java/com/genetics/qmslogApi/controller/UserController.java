@@ -1,6 +1,5 @@
 package com.genetics.qmslogApi.controller;
 
-import com.genetics.qmslogApi.model.Teller;
 import com.genetics.qmslogApi.model.User;
 import com.genetics.qmslogApi.payload.JWTLoginSuccessResponse;
 import com.genetics.qmslogApi.payload.LoginRequest;
@@ -26,23 +25,22 @@ import static com.genetics.qmslogApi.security.SecurityConstant.TOKEN_PREFIX;
 
 @RequestMapping("api/v1/users")
 @RestController
-
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private  UserService userService;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    MapValidationServiceError mapValidationServiceError;
+    private MapValidationServiceError mapValidationServiceError;
 
     @Autowired
-    JWTTokenProvider tokenProvider;
+    private JWTTokenProvider tokenProvider;
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
 
     @GetMapping(path = "/getUsers")
@@ -51,9 +49,16 @@ public class UserController {
     }
 
 
+    @PostMapping(path = "/createUser")
+    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result){
 
+        ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
+        if(errorMap!= null) return errorMap;
+        User user1 = userService.createUser(user);
+        return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+    }
 
-    @PostMapping("/login")
+    @PostMapping(path = "/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
         if(errorMap != null) return errorMap;
@@ -66,18 +71,8 @@ public class UserController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
+        String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
         return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
     }
-
-    @PostMapping(path = "/createUser")
-    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result){
-
-        ResponseEntity<?> errorMap = mapValidationServiceError.MapValidationService(result);
-        if(errorMap!= null) return errorMap;
-        User user1 = userService.createUser(user);
-        return new ResponseEntity<User>(user1, HttpStatus.CREATED);
-    }
-
 }
